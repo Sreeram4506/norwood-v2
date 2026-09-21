@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Phone, ShieldCheck, Star } from "lucide-react";
 import { SHOP } from "./shop";
@@ -5,8 +6,85 @@ import { riseItem, stagger } from "./Reveal";
 import { BookAppointmentDialog } from "./BookAppointmentDialog";
 import { OpenStatus } from "./OpenStatus";
 
+/**
+ * hero-background.mp4 is a wide 16:9 clip, but on a narrow mobile viewport the
+ * full-bleed `object-cover` crop only shows a ~25% vertical sliver of its
+ * width — centered by default, which cuts the technicians in the footage out
+ * of frame entirely whenever they aren't dead-center. These keyframes were
+ * measured directly off the clip (drew each second to a canvas with a percent
+ * grid overlay and read the person's actual x position — a first guess from
+ * low-res thumbnails alone was consistently wrong) so the crop pans to follow
+ * them instead. Desktop shows the full width already, so this only runs
+ * below the `sm` breakpoint.
+ */
+const MOBILE_FOCUS_KEYFRAMES: Array<{ t: number; x: number }> = [
+  { t: 0, x: 45 },
+  { t: 3.5, x: 45 },
+  { t: 5, x: 22 },
+  { t: 6.8, x: 28 },
+  { t: 9, x: 30 },
+  { t: 11, x: 40 },
+  { t: 14, x: 50 },
+  { t: 16, x: 50 },
+  { t: 21, x: 50 },
+  { t: 23, x: 15 },
+  { t: 25.5, x: 35 },
+  { t: 26.5, x: 45 },
+  { t: 28.5, x: 45 },
+  { t: 31, x: 35 },
+  { t: 32.5, x: 40 },
+  { t: 34.5, x: 50 },
+  { t: 36.5, x: 50 },
+  { t: 39.5, x: 38 },
+  { t: 41, x: 45 },
+  { t: 43.5, x: 55 },
+  { t: 44.5, x: 50 },
+  { t: 46.5, x: 43 },
+  { t: 48, x: 46 },
+  { t: 50.3, x: 46 },
+];
+
+function focusXAt(time: number): number {
+  const frames = MOBILE_FOCUS_KEYFRAMES;
+  if (time <= frames[0]!.t) return frames[0]!.x;
+  for (let i = 1; i < frames.length; i++) {
+    const prev = frames[i - 1]!;
+    const next = frames[i]!;
+    if (time <= next.t) {
+      const span = next.t - prev.t;
+      const progress = span === 0 ? 0 : (time - prev.t) / span;
+      return prev.x + (next.x - prev.x) * progress;
+    }
+  }
+  return frames[frames.length - 1]!.x;
+}
+
 export function Hero() {
   const reduce = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const mobileQuery = window.matchMedia("(max-width: 639px)");
+
+    const onTimeUpdate = () => {
+      if (!mobileQuery.matches) {
+        video.style.objectPosition = "";
+        return;
+      }
+      video.style.objectPosition = `${focusXAt(video.currentTime)}% 50%`;
+    };
+
+    video.addEventListener("timeupdate", onTimeUpdate);
+    mobileQuery.addEventListener("change", onTimeUpdate);
+    onTimeUpdate();
+
+    return () => {
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      mobileQuery.removeEventListener("change", onTimeUpdate);
+    };
+  }, []);
 
   return (
     <section
@@ -15,6 +93,7 @@ export function Hero() {
     >
       {/* Background Video & Overlays */}
       <video
+        ref={videoRef}
         src="/hero-background.mp4"
         poster="/hero-background-poster.jpg"
         autoPlay
@@ -22,15 +101,15 @@ export function Hero() {
         muted
         playsInline
         preload="auto"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-center transition-[object-position] duration-500 ease-out"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/10"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-black/5"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/20 to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/50 via-black/10 to-transparent"
       />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6">
