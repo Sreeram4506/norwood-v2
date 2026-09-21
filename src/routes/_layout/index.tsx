@@ -3,7 +3,6 @@ import { Hero } from "@/components/home/Hero";
 import { IntroSection } from "@/components/home/IntroSection";
 import { InspectionBadge } from "@/components/home/InspectionBadge";
 import { Services } from "@/components/home/Services";
-import { Promotions } from "@/components/home/Promotions";
 import { LocationsSection } from "@/components/home/LocationsSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { SHOP } from "@/components/home/shop";
@@ -86,7 +85,6 @@ function Index() {
       <IntroSection />
       <InspectionBadge />
       <WhyUs />
-      <Promotions />
       <Services />
       <AutoSalesBanner />
       <Testimonials />
