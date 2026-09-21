@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import { SERVICES } from "./servicesData";
 
-export function Services() {
+export function Services({ linkToAll = true }: { linkToAll?: boolean }) {
   return (
     <section id="services" className="service-counter relative overflow-hidden py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -17,13 +17,15 @@ export function Services() {
               and import cars, SUVs and light trucks alike.
             </p>
           </div>
-          <Link
-            to="/services"
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            View all services
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          {linkToAll && (
+            <Link
+              to="/services"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              View all services
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          )}
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">

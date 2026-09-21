@@ -47,7 +47,7 @@ function ServicesPage() {
         title="Services"
         description="Every service under one roof — no need to shop around."
       />
-      <Services />
+      <Services linkToAll={false} />
       <FAQSection heading="Questions about our services" items={FAQS} />
     </>
   );
