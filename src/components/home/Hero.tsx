@@ -39,10 +39,18 @@ const MOBILE_FOCUS_KEYFRAMES: Array<{ t: number; x: number }> = [
   { t: 41, x: 45 },
   { t: 43.5, x: 55 },
   { t: 44.5, x: 50 },
-  { t: 46.5, x: 43 },
-  { t: 48, x: 46 },
-  { t: 50.3, x: 46 },
+  { t: 45.3, x: 15 },
+  { t: 46.5, x: 12 },
+  { t: 48, x: 12 },
+  { t: 49, x: 15 },
+  { t: 49.3, x: 35 },
+  { t: 49.6, x: 50 },
+  { t: 50.3, x: 50 },
 ];
+
+// With the scrim removed, white text sits directly on the video, so it leans on a strong
+// drop-shadow instead of a dark overlay for legibility — keeps the footage fully visible.
+const heroTextShadow = "[text-shadow:0_2px_18px_rgba(0,0,0,0.9),0_1px_4px_rgba(0,0,0,0.95)]";
 
 function focusXAt(time: number): number {
   const frames = MOBILE_FOCUS_KEYFRAMES;
@@ -103,13 +111,14 @@ export function Hero() {
         preload="auto"
         className="absolute inset-0 -z-20 h-full w-full object-cover object-center transition-[object-position] duration-500 ease-out"
       />
+      {/*
+        No full-bleed filter over the video — most of the frame (right side, full top) stays
+        completely clear. Just a soft fade behind the text column itself, since white text still
+        needs a contrast floor on the video's brighter moments (e.g. the sky near the start).
+      */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-black/5"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/50 via-black/10 to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/45 via-black/10 to-transparent sm:from-black/40 sm:via-black/5 sm:to-transparent"
       />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6">
@@ -121,7 +130,7 @@ export function Hero() {
         >
           <motion.div
             variants={riseItem}
-            className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white backdrop-blur-md sm:px-3.5 sm:text-xs sm:tracking-[0.18em]"
+            className={`inline-flex max-w-full items-center gap-2 rounded-full border border-white/30 bg-black/35 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white backdrop-blur-md sm:px-3.5 sm:text-xs sm:tracking-[0.18em] ${heroTextShadow}`}
           >
             <ShieldCheck className="h-4 w-4 text-primary-on-dark" />
             <span className="truncate">Family-Owned &amp; Operating Since {SHOP.founded}</span>
@@ -129,14 +138,14 @@ export function Hero() {
 
           <motion.h1
             variants={riseItem}
-            className="mt-5 max-w-4xl text-wrap font-display text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-6xl"
+            className={`mt-5 max-w-4xl text-wrap font-display text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-6xl ${heroTextShadow}`}
           >
             Expert auto repair. Clear explanations.
           </motion.h1>
 
           <motion.p
             variants={riseItem}
-            className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg"
+            className={`mt-5 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg ${heroTextShadow}`}
           >
             Two adjacent facilities handling every repair, tire, and state inspection need — our
             ASE-certified technicians explain the work in plain English before the wrench turns.
@@ -160,7 +169,7 @@ export function Hero() {
 
             <a
               href={`tel:${SHOP.phone}`}
-              className="hidden items-center justify-center gap-2.5 rounded-full border border-white/30 bg-white/10 px-8 py-4 text-base font-extrabold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:inline-flex"
+              className={`hidden items-center justify-center gap-2.5 rounded-full border border-white/30 bg-black/35 px-8 py-4 text-base font-extrabold text-white transition-all duration-200 hover:border-white/60 hover:bg-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:inline-flex ${heroTextShadow}`}
             >
               <Phone className="h-5 w-5 text-primary-on-dark" />
               {SHOP.phoneDisplay}
@@ -169,7 +178,7 @@ export function Hero() {
 
           <motion.div
             variants={riseItem}
-            className="mt-10 flex flex-wrap items-center gap-5 text-sm font-semibold text-white/80"
+            className={`mt-10 flex flex-wrap items-center gap-5 text-sm font-semibold text-white/90 ${heroTextShadow}`}
           >
             <div className="flex items-center gap-2">
               <div className="flex text-amber-400">
