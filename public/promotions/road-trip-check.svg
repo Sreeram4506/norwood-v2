@@ -1,0 +1,34 @@
+<svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="road trip check">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220" />
+      <stop offset="55%" stop-color="#101a2e" />
+      <stop offset="100%" stop-color="#1a1210" />
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#e0432f" stop-opacity="0.55" />
+      <stop offset="55%" stop-color="#8f2418" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#8f2418" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="iconStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff8a70" />
+      <stop offset="100%" stop-color="#c23b2e" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="500" fill="url(#bg)" />
+  <rect width="1200" height="500" fill="url(#grid)" />
+  <rect width="1200" height="500" fill="url(#glow)" />
+
+  <g transform="translate(788,118) scale(11)" fill="none" stroke="url(#iconStroke)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+      <path d="m9 14 2 2 4-4" />
+    </g>
+
+  <circle cx="920" cy="250" r="210" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1.5" />
+  <circle cx="920" cy="250" r="160" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+</svg>

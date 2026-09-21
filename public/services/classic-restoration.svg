@@ -1,0 +1,43 @@
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="classic restoration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220" />
+      <stop offset="55%" stop-color="#101a2e" />
+      <stop offset="100%" stop-color="#1a1210" />
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#e0432f" stop-opacity="0.55" />
+      <stop offset="55%" stop-color="#8f2418" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#8f2418" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="iconStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff8a70" />
+      <stop offset="100%" stop-color="#c23b2e" />
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)" />
+  <rect width="1200" height="675" fill="url(#grid)" />
+  <rect width="1200" height="675" fill="url(#glow)" />
+
+  <g transform="translate(690,160) scale(15)" fill="none" stroke="url(#iconStroke)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8" />
+      <path d="M7 14h.01" />
+      <path d="M17 14h.01" />
+      <rect width="18" height="8" x="3" y="10" rx="2" />
+      <path d="M5 18v2" />
+      <path d="M19 18v2" />
+    </g>
+
+  <circle cx="870" cy="340" r="290" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1.5" />
+  <circle cx="870" cy="340" r="230" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1" />
+
+  <rect width="1200" height="675" fill="url(#fade)" />
+</svg>
