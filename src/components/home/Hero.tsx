@@ -100,7 +100,7 @@ export function Hero() {
       {/* Background Video & Overlays */}
       <video
         ref={videoRef}
-        src="/hero-background.mp4"
+        src="/hero-background copy.mp4"
         poster="/hero-background-poster.jpg"
         autoPlay
         loop
