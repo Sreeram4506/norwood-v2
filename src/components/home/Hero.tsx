@@ -16,34 +16,39 @@ import { OpenStatus } from "./OpenStatus";
  * follow them instead. Desktop shows the full width already, so this only
  * runs below the `sm` breakpoint.
  *
- * Re-measured against the original 1280x720/58.7s source (public/hero-background.mp4
- * had been silently downscaled to 1024x576/50.3s at some point, which is what was
- * making the video look soft — restored from git history) — the timeline shifted
- * by roughly 8s versus the old, truncated file, so every keyframe below is new.
+ * Video re-uploaded 2026-09-23 — timeline is back to 1024x576/50.3s (verified by
+ * sampling frames: content matches this file exactly, e.g. the key-handoff shot is
+ * still at 48s), so these are the matching keyframes for that timeline.
  */
 const MOBILE_FOCUS_KEYFRAMES: Array<{ t: number; x: number }> = [
-  { t: 0, x: 50 },
-  { t: 5.9, x: 50 },
-  { t: 9.5, x: 40 },
-  { t: 13.7, x: 22 },
-  { t: 15.7, x: 70 },
-  { t: 18, x: 30 },
-  { t: 20.5, x: 50 },
-  { t: 23.5, x: 50 },
-  { t: 29.5, x: 50 },
-  { t: 32.3, x: 55 },
-  { t: 35.2, x: 45 },
-  { t: 38.1, x: 40 },
-  { t: 41.1, x: 15 },
-  { t: 44, x: 50 },
-  { t: 47.5, x: 50 },
-  { t: 49.9, x: 50 },
-  { t: 52.8, x: 50 },
-  { t: 55, x: 12 },
-  { t: 57.3, x: 12 },
-  { t: 57.6, x: 35 },
-  { t: 57.9, x: 50 },
-  { t: 58.67, x: 50 },
+  { t: 0, x: 45 },
+  { t: 3.5, x: 45 },
+  { t: 5, x: 22 },
+  { t: 6.8, x: 28 },
+  { t: 9, x: 30 },
+  { t: 11, x: 40 },
+  { t: 14, x: 50 },
+  { t: 16, x: 50 },
+  { t: 21, x: 50 },
+  { t: 23, x: 15 },
+  { t: 25.5, x: 35 },
+  { t: 26.5, x: 45 },
+  { t: 28.5, x: 45 },
+  { t: 31, x: 35 },
+  { t: 32.5, x: 40 },
+  { t: 34.5, x: 50 },
+  { t: 36.5, x: 50 },
+  { t: 39.5, x: 38 },
+  { t: 41, x: 45 },
+  { t: 43.5, x: 55 },
+  { t: 44.5, x: 50 },
+  { t: 45.3, x: 15 },
+  { t: 46.5, x: 12 },
+  { t: 48, x: 12 },
+  { t: 49, x: 15 },
+  { t: 49.3, x: 35 },
+  { t: 49.6, x: 50 },
+  { t: 50.3, x: 50 },
 ];
 
 // With the scrim removed, white text sits directly on the video, so it leans on a strong
@@ -100,7 +105,7 @@ export function Hero() {
       {/* Background Video & Overlays */}
       <video
         ref={videoRef}
-        src="/hero-background copy.mp4"
+        src="/hero-background.mp4"
         poster="/hero-background-poster.jpg"
         autoPlay
         loop
