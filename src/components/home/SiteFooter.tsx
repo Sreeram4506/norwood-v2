@@ -91,7 +91,17 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {SHOP.legalName}. All rights reserved.
           </p>
-
+          <a
+            href="https://www.indraam.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-1.5 rounded-full border border-primary-on-dark/50 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/85 transition-colors hover:border-primary-on-dark hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          >
+            Powered by
+            <span className="text-sm font-extrabold tracking-wide text-primary-on-dark underline-offset-4 group-hover:underline">
+              Indraam
+            </span>
+          </a>
         </div>
       </div>
     </footer>
